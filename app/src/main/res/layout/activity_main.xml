@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/gradient_background" />
+
+    <TextView
+        android:id="@+id/app_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/app_desc"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="538dp"
+        android:fontFamily="@font/latebold"
+        android:layout_marginBottom="8dp"
+        android:text="@string/title_app"
+        android:textColor="@color/orange"
+        android:textSize="40dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/app_desc"
+        android:layout_width="211dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/latoreguler"
+        android:layout_above="@id/startButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="107dp"
+        android:layout_marginBottom="52dp"
+        android:gravity="left"
+        android:text="@string/headline_firstpage"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="209dp"
+        android:layout_marginBottom="100dp"
+        android:backgroundTint="@android:color/transparent"
+        android:fontFamily="@font/latoreguler"
+        android:paddingLeft="35dp"
+        android:paddingTop="10dp"
+        android:paddingRight="35dp"
+        android:paddingBottom="10dp"
+        android:text="@string/mulai"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:strokeColor="@color/orange"
+        app:strokeWidth="3sp" />
+
+
+</RelativeLayout>
