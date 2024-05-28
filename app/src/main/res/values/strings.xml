@@ -3,4 +3,6 @@
     <string name="title_app">NutriScan</string>
     <string name="mulai">Mulai</string>
     <string name="headline_firstpage">Foto Makanan Anda,\nKetahui Nutrisi Seketika</string>
+    <string name="scan_nutrisi">Scan Nutrisi</string>
+    <string name="Riwayat">Riwayat</string>
 </resources>
