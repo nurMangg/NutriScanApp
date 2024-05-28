@@ -1,5 +1,6 @@
 package com.rohman.nutriscanapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -25,6 +26,8 @@ class DashboardActivity : AppCompatActivity() {
         greetingTextView.text = greetingMessage
         weatherIcon.setImageResource(iconResId)
 
+        setViewContent()
+
     }
 
     private fun getGreetingAndIcon(): Pair<String, Int> {
@@ -34,6 +37,12 @@ class DashboardActivity : AppCompatActivity() {
             in 0..11 -> "Good Morning!" to R.drawable.baseline_wb_sunny_24
             in 12..17 -> "Good Afternoon!" to R.drawable.baseline_cloud_24
             else -> "Good Evening!" to R.drawable.baseline_mode_night_24
+        }
+    }
+
+    private fun setViewContent(){
+        binding.btnScan.setOnClickListener{
+            startActivity(Intent(this, CameraActivity::class.java))
         }
     }
 }

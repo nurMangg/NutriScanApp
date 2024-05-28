@@ -59,6 +59,7 @@
         android:paddingRight="35dp"
         android:paddingBottom="10dp"
         android:text="@string/mulai"
+        android:textColor="@color/white"
         android:textAlignment="center"
         android:textSize="20sp"
         app:strokeColor="@color/orange"
