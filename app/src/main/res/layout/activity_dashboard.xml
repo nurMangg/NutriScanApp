@@ -171,7 +171,7 @@
             android:layout_columnWeight="1"
             android:layout_margin="5dp">
             <androidx.cardview.widget.CardView
-                android:id="@+id/btn"
+                android:id="@+id/btn_daftarmakanan"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"

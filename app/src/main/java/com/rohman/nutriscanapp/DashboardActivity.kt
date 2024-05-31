@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.rohman.nutriscanapp.daftarmakanan.DaftarMakananActivity
 import com.rohman.nutriscanapp.databinding.ActivityDashboardBinding
+import com.rohman.nutriscanapp.riwayat.RiwayatActivity
 import com.rohman.nutriscanapp.scan.CameraActivity
 import java.util.Calendar
 
@@ -41,6 +43,12 @@ class DashboardActivity : AppCompatActivity() {
     private fun setViewContent(){
         binding.btnScan.setOnClickListener{
             startActivity(Intent(this, CameraActivity::class.java))
+        }
+        binding.btnRiwayat.setOnClickListener {
+            startActivity(Intent(this, RiwayatActivity::class.java))
+        }
+        binding.btnDaftarmakanan.setOnClickListener {
+            startActivity(Intent(this, DaftarMakananActivity::class.java))
         }
     }
 }
