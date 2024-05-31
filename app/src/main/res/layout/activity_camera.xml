@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CameraActivity">
+    tools:context=".scan.CameraActivity">
 
     <androidx.camera.view.PreviewView
         android:id="@+id/previewView"
@@ -35,29 +35,29 @@
 
         <ImageView
             android:id="@+id/captureImage"
-            android:layout_width="118dp"
-            android:layout_height="118dp"
+            android:layout_width="93dp"
+            android:layout_height="97dp"
             android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/capture"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"/>
+            android:foreground="?attr/selectableItemBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/capture" />
 
 
         <ImageView
             android:id="@+id/insertImage"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="53dp"
             android:layout_marginStart="40dp"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/image_gallery" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

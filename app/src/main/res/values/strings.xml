@@ -5,5 +5,13 @@
     <string name="headline_firstpage">Foto Makanan Anda,\nKetahui Nutrisi Seketika</string>
     <string name="scan_nutrisi">Scan Nutrisi</string>
     <string name="Riwayat">Riwayat</string>
-    <string name="pengaturan">pengaturan</string>
+    <string name="pengaturan">Pengaturan</string>
+    <string name="content_desc">Nasi yang dicampur dengan bumbu, telur, dan sayuran, sering disajikan dengan acar dan kerupuk</string>
+    <string name="content_title">Nasi Goreng</string>
+    <string name="lemak">Lemak</string>
+    <string name="kalori">Kalori</string>
+    <string name="protein">Protein</string>
+    <string name="karbo">Karbo</string>
+    <string name="bahan_bahan">Bahan-Bahan</string>
+    <string name="galeri_makanan">Galeri Makanan</string>
 </resources>

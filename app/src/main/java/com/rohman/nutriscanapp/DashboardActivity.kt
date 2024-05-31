@@ -1,15 +1,13 @@
 package com.rohman.nutriscanapp
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.rohman.nutriscanapp.databinding.ActivityDashboardBinding
-import com.rohman.nutriscanapp.databinding.ActivityMainBinding
+import com.rohman.nutriscanapp.scan.CameraActivity
 import java.util.Calendar
 
 class DashboardActivity : AppCompatActivity() {

@@ -5,12 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResultCameraActivity">
+    tools:context=".scan.ResultCameraActivity">
 
     <ImageView
         android:id="@+id/result_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scaleType="centerCrop"
         android:src="@drawable/result_deteksi"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout

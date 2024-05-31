@@ -182,9 +182,9 @@
                 app:cardBackgroundColor="@color/orange"
                 android:layout_gravity="fill">
                 <ImageButton
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/scan"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/galerimakanan"
                     android:backgroundTint="@android:color/transparent"
                     android:layout_gravity="center|top"
                     android:background="?attr/selectableItemBackground"
@@ -198,7 +198,7 @@
                     android:gravity="center|bottom"
                     android:fontFamily="@font/latoreguler"
                     android:textColor="@color/white"
-                    android:text="@string/scan_nutrisi" />
+                    android:text="@string/galeri_makanan" />
             </androidx.cardview.widget.CardView>
         </FrameLayout>
 

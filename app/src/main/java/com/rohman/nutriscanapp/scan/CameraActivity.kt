@@ -1,4 +1,4 @@
-package com.rohman.nutriscanapp
+package com.rohman.nutriscanapp.scan
 
 import android.content.Intent
 import android.net.Uri
@@ -6,12 +6,10 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.OrientationEventListener
-import android.view.OrientationEventListener.ORIENTATION_UNKNOWN
 import android.view.Surface
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
@@ -20,9 +18,10 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.rohman.nutriscanapp.createCustomTempFile
 import com.rohman.nutriscanapp.databinding.ActivityCameraBinding
+import com.rohman.nutriscanapp.scan.ResultCameraActivity
+import java.io.File
 
 class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
@@ -35,15 +34,8 @@ class CameraActivity : AppCompatActivity() {
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        binding.switchCamera.setOnClickListener {
-//            cameraSelector =
-//                if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) CameraSelector.DEFAULT_FRONT_CAMERA
-//                else CameraSelector.DEFAULT_BACK_CAMERA
-//            startCamera()
-//        }
-
-        binding.captureImage.setOnClickListener{
-            startActivity(Intent(this, ResultCameraActivity::class.java))
+        binding.captureImage.setOnClickListener {
+            takePhoto()
         }
         binding.insertImage.setOnClickListener { startGallery() }
     }
@@ -75,21 +67,19 @@ class CameraActivity : AppCompatActivity() {
                     preview,
                     imageCapture
                 )
-
             } catch (exc: Exception) {
                 Toast.makeText(
                     this@CameraActivity,
-                    "Gagal memunculkan kamera.",
+                    "Failed to open camera.",
                     Toast.LENGTH_SHORT
                 ).show()
-                Log.e(TAG, "startCamera: ${exc.message}")
+                Log.e(TAG, "startCamera: ${exc.message}", exc)
             }
         }, ContextCompat.getMainExecutor(this))
     }
 
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
-
 
         val photoFile = createCustomTempFile(application)
 
@@ -100,21 +90,20 @@ class CameraActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val intent = Intent()
-                    intent.putExtra(EXTRA_CAMERAX_IMAGE, output.savedUri.toString())
-                    setResult(CAMERAX_RESULT, intent)
-
-                    ResultCameraActivity()
+                    val savedUri = Uri.fromFile(photoFile)
+                    val intent = Intent(this@CameraActivity, ResultCameraActivity::class.java)
+                    intent.putExtra(EXTRA_CAMERAX_IMAGE, savedUri.toString())
+                    startActivity(intent)
                     finish()
                 }
 
                 override fun onError(exc: ImageCaptureException) {
                     Toast.makeText(
                         this@CameraActivity,
-                        "Gagal mengambil gambar.",
+                        "Failed to capture image.",
                         Toast.LENGTH_SHORT
                     ).show()
-                    Log.e(TAG, "onError: ${exc.message}")
+                    Log.e(TAG, "onError: ${exc.message}", exc)
                 }
             }
         )
@@ -133,8 +122,9 @@ class CameraActivity : AppCompatActivity() {
     ) { result ->
         if (result.resultCode == RESULT_OK) {
             val selectedImg: Uri = result.data?.data as Uri
-
-
+            val intent = Intent(this, ResultCameraActivity::class.java)
+            intent.putExtra(EXTRA_CAMERAX_IMAGE, selectedImg.toString())
+            startActivity(intent)
         }
     }
 
@@ -183,6 +173,5 @@ class CameraActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "CameraActivity"
         const val EXTRA_CAMERAX_IMAGE = "CameraX Image"
-        const val CAMERAX_RESULT = 200
     }
 }
