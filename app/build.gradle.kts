@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.googleAndroidLibrariesMapsplatformSecretsGradlePlugin)
 }
 
 android {
@@ -35,6 +36,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -48,12 +50,13 @@ dependencies {
     implementation(libs.androidx.gridlayout)
     implementation(libs.androidx.cardview)
     implementation(libs.androidx.annotation)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.0")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation("androidx.activity:activity-ktx:1.9.0")
 
     implementation("androidx.recyclerview:recyclerview:1.3.2")
@@ -68,5 +71,14 @@ dependencies {
 
     //Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    //retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+
+    implementation("com.google.android.libraries.places:places:3.3.0")
+
+
 
 }

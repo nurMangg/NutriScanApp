@@ -2,6 +2,7 @@ package com.rohman.nutriscanapp.scan
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.rohman.nutriscanapp.R
 import com.rohman.nutriscanapp.databinding.ActivityDetailResultCameraBinding
+import com.rohman.nutriscanapp.scan.maps.MapsActivity
 
 
 class DetailResultCameraActivity : AppCompatActivity() {
@@ -61,6 +63,10 @@ class DetailResultCameraActivity : AppCompatActivity() {
                 }
                 else -> false
             }
+        }
+
+        binding.btnMap.setOnClickListener {
+            startActivity(Intent(this, MapsActivity::class.java))
         }
     }
 

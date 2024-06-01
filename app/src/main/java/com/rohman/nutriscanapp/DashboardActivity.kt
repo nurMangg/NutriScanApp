@@ -1,8 +1,12 @@
 package com.rohman.nutriscanapp
 
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
+import android.view.WindowManager
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -27,7 +31,7 @@ class DashboardActivity : AppCompatActivity() {
         weatherIcon.setImageResource(iconResId)
 
         setViewContent()
-
+        main()
     }
 
     private fun getGreetingAndIcon(): Pair<String, Int> {
@@ -50,5 +54,32 @@ class DashboardActivity : AppCompatActivity() {
         binding.btnDaftarmakanan.setOnClickListener {
             startActivity(Intent(this, DaftarMakananActivity::class.java))
         }
+
+        binding.iconView.setOnClickListener{ dialogPopUp() }
     }
+
+    private fun dialogPopUp() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.popup_info)
+
+        val width = resources.getDimensionPixelSize(R.dimen.popup_width)
+        val height = resources.getDimensionPixelSize(R.dimen.popup_height)
+        dialog.window?.setLayout(width, height)
+
+        val closeButton: Button = dialog.findViewById(R.id.closeButton)
+        val textView: TextView = dialog.findViewById(R.id.popupText)
+        textView.text = "Some text here"
+
+        closeButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    fun main() {
+        println("No Idea, I Need Healing")
+    }
+
+
 }
