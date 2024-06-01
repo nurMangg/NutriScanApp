@@ -25,6 +25,4 @@
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_maps">MapsActivity</string>
 
-
-    <string name="google_maps_key">AIzaSyCVI9_6mPtxfLbadqZQVry83_cvS4U-Nps</string>
 </resources>
