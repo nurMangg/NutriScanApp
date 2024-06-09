@@ -1,12 +1,16 @@
 package com.rohman.nutriscanapp.scan
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.view.OrientationEventListener
 import android.view.Surface
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
@@ -18,10 +22,27 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import com.google.gson.Gson
 import com.rohman.nutriscanapp.createCustomTempFile
+import com.rohman.nutriscanapp.data.api.ApiConfig
+import com.rohman.nutriscanapp.data.api.ApiResponse
+import com.rohman.nutriscanapp.data.api.PredictionData
 import com.rohman.nutriscanapp.databinding.ActivityCameraBinding
-import com.rohman.nutriscanapp.scan.ResultCameraActivity
+import com.rohman.nutriscanapp.uriToJson
+import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.ResponseBody
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.InputStream
 
 class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
@@ -30,14 +51,76 @@ class CameraActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.captureImage.setOnClickListener {
-            takePhoto()
-        }
+        binding.captureImage.setOnClickListener { takePhoto() }
         binding.insertImage.setOnClickListener { startGallery() }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun uploadImage(imageUri: Uri) {
+        showLoad(true)
+        val jsonObject = uriToJson(imageUri, this)
+        val requestBody = jsonObject.toString().toRequestBody("application/json".toMediaType())
+
+        val apiService = ApiConfig.getApiService()
+        val call = apiService.predict(requestBody)
+
+        call.enqueue(object : Callback<ApiResponse> {
+            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                showLoad(false)
+                if (response.isSuccessful) {
+                    val apiResponse = response.body()
+                    if (apiResponse != null) {
+                        displayResults(apiResponse.data, imageUri)
+                    } else {
+                        showToast("No data received")
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    val errorResponse = Gson().fromJson(errorBody, ApiResponse::class.java)
+                    showToast(errorResponse.message)
+                }
+            }
+
+            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                showLoad(false)
+                showToast("An error occurred: ${t.message}")
+                Log.e("uploadImage", "Error: ${t.message}", t)
+            }
+        })
+    }
+
+    private fun uriToJson(imageUri: Uri, context: Context): JSONObject {
+        val inputStream = context.contentResolver.openInputStream(imageUri) as InputStream
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        val buffer = ByteArray(1024)
+        var length: Int
+        while (inputStream.read(buffer).also { length = it } > 0) {
+            byteArrayOutputStream.write(buffer, 0, length)
+        }
+        inputStream.close()
+
+        val byteArray = byteArrayOutputStream.toByteArray()
+        val base64Image = Base64.encodeToString(byteArray, Base64.NO_WRAP)
+
+        val jsonObject = JSONObject()
+        jsonObject.put("image", base64Image)
+        return jsonObject
+    }
+
+    private fun displayResults(data: List<PredictionData>, imageUri: Uri) {
+        if (data.isNotEmpty()) {
+            val prediction = data[0]
+            val intent = Intent(this, ResultCameraActivity::class.java)
+            intent.putExtra(ResultCameraActivity.EXTRA_PREDUCT_RESULT, prediction.name)
+            intent.putExtra(EXTRA_CAMERAX_IMAGE, imageUri.toString())
+            startActivity(intent)
+        }
     }
 
     public override fun onResume() {
@@ -48,15 +131,11 @@ class CameraActivity : AppCompatActivity() {
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-
         cameraProviderFuture.addListener({
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-            val preview = Preview.Builder()
-                .build()
-                .also {
-                    it.setSurfaceProvider(binding.previewView.surfaceProvider)
-                }
-
+            val preview = Preview.Builder().build().also {
+                it.setSurfaceProvider(binding.previewView.surfaceProvider)
+            }
             imageCapture = ImageCapture.Builder().build()
 
             try {
@@ -68,21 +147,16 @@ class CameraActivity : AppCompatActivity() {
                     imageCapture
                 )
             } catch (exc: Exception) {
-                Toast.makeText(
-                    this@CameraActivity,
-                    "Failed to open camera.",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this@CameraActivity, "Failed to open camera.", Toast.LENGTH_SHORT).show()
                 Log.e(TAG, "startCamera: ${exc.message}", exc)
             }
         }, ContextCompat.getMainExecutor(this))
     }
 
     private fun takePhoto() {
+        showLoad(true)
         val imageCapture = imageCapture ?: return
-
         val photoFile = createCustomTempFile(application)
-
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
         imageCapture.takePicture(
@@ -91,18 +165,12 @@ class CameraActivity : AppCompatActivity() {
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     val savedUri = Uri.fromFile(photoFile)
-                    val intent = Intent(this@CameraActivity, ResultCameraActivity::class.java)
-                    intent.putExtra(EXTRA_CAMERAX_IMAGE, savedUri.toString())
-                    startActivity(intent)
-                    finish()
+                    uploadImage(savedUri)
                 }
 
                 override fun onError(exc: ImageCaptureException) {
-                    Toast.makeText(
-                        this@CameraActivity,
-                        "Failed to capture image.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showLoad(false)
+                    Toast.makeText(this@CameraActivity, "Failed to capture image.", Toast.LENGTH_SHORT).show()
                     Log.e(TAG, "onError: ${exc.message}", exc)
                 }
             }
@@ -122,9 +190,7 @@ class CameraActivity : AppCompatActivity() {
     ) { result ->
         if (result.resultCode == RESULT_OK) {
             val selectedImg: Uri = result.data?.data as Uri
-            val intent = Intent(this, ResultCameraActivity::class.java)
-            intent.putExtra(EXTRA_CAMERAX_IMAGE, selectedImg.toString())
-            startActivity(intent)
+            uploadImage(selectedImg)
         }
     }
 
@@ -144,17 +210,13 @@ class CameraActivity : AppCompatActivity() {
     private val orientationEventListener by lazy {
         object : OrientationEventListener(this) {
             override fun onOrientationChanged(orientation: Int) {
-                if (orientation == ORIENTATION_UNKNOWN) {
-                    return
-                }
-
+                if (orientation == ORIENTATION_UNKNOWN) return
                 val rotation = when (orientation) {
                     in 45 until 135 -> Surface.ROTATION_270
                     in 135 until 225 -> Surface.ROTATION_180
                     in 225 until 315 -> Surface.ROTATION_90
                     else -> Surface.ROTATION_0
                 }
-
                 imageCapture?.targetRotation = rotation
             }
         }
@@ -170,8 +232,13 @@ class CameraActivity : AppCompatActivity() {
         orientationEventListener.disable()
     }
 
+    private fun showLoad(isLoad: Boolean) {
+        binding.progressBar.visibility = if (isLoad) View.VISIBLE else View.GONE
+    }
+
     companion object {
         private const val TAG = "CameraActivity"
         const val EXTRA_CAMERAX_IMAGE = "CameraX Image"
+        const val EXTRA_PREDICT_RESULT = "predict_result"
     }
 }

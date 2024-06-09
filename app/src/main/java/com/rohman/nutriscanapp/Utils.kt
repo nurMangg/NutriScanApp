@@ -6,9 +6,13 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Base64
 import androidx.core.content.FileProvider
 import com.airbnb.lottie.BuildConfig
+import org.json.JSONObject
+import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -49,4 +53,22 @@ private fun getImageUriForPreQ(context: Context): Uri {
 fun createCustomTempFile(context: Context): File {
     val filesDir = context.externalCacheDir
     return File.createTempFile(timeStamp, ".jpg", filesDir)
+}
+
+fun uriToJson(imageUri: Uri, context: Context): JSONObject {
+    val inputStream = context.contentResolver.openInputStream(imageUri) as InputStream
+    val byteArrayOutputStream = ByteArrayOutputStream()
+    val buffer = ByteArray(1024)
+    var length: Int
+    while (inputStream.read(buffer).also { length = it } > 0) {
+        byteArrayOutputStream.write(buffer, 0, length)
+    }
+    inputStream.close()
+
+    val byteArray = byteArrayOutputStream.toByteArray()
+    val base64Image = Base64.encodeToString(byteArray, Base64.NO_WRAP)
+
+    val jsonObject = JSONObject()
+    jsonObject.put("image", base64Image)
+    return jsonObject
 }

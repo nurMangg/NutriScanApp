@@ -16,7 +16,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.rohman.nutriscanapp.R
 import com.rohman.nutriscanapp.databinding.ActivityDetailResultCameraBinding
-import com.rohman.nutriscanapp.scan.maps.MapsActivity
+
 
 
 class DetailResultCameraActivity : AppCompatActivity() {
@@ -65,9 +65,9 @@ class DetailResultCameraActivity : AppCompatActivity() {
             }
         }
 
-        binding.btnMap.setOnClickListener {
-            startActivity(Intent(this, MapsActivity::class.java))
-        }
+//        binding.btnMap.setOnClickListener {
+//            startActivity(Intent(this, MapsActivity::class.java))
+//        }
     }
 
     private fun adjustLayoutHeight(deltaY: Int) {
