@@ -22,9 +22,10 @@
         android:layout_height="40dp"
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="34dp"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="60dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -107,13 +108,13 @@
                 </TextView>
 
                 <ImageButton
-                    android:id="@+id/btn_map"
+                    android:id="@+id/btn_save"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/content_title"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:src="@drawable/baseline_map_24"
+                    android:src="@drawable/baseline_bookmark_add_before_24"
                     android:backgroundTint="@android:color/transparent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -178,6 +179,7 @@
                                 />
 
                             <TextView
+                                android:id="@+id/nilai_karbo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
@@ -239,6 +241,7 @@
                                 />
 
                             <TextView
+                                android:id="@+id/nilai_protein"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
@@ -300,6 +303,7 @@
                                 />
 
                             <TextView
+                                android:id="@+id/nilai_kalori"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
@@ -361,6 +365,7 @@
                                 />
 
                             <TextView
+                                android:id="@+id/nilai_lemak"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
@@ -397,6 +402,7 @@
                 android:textColor="@color/black"/>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle_bahan"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/bahan"

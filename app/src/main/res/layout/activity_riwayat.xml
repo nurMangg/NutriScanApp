@@ -11,8 +11,9 @@
         android:id="@+id/title_riwayat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="H"
+        android:text="@string/riwayat"
         android:textSize="30sp"
+        android:fontFamily="@font/latosemibold"
         />
 
     <RelativeLayout
@@ -69,12 +70,12 @@
                                 />
 
                             <TextView
+                                android:id="@+id/total_karbo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="6dp"
                                 android:gravity="center"
-                                android:text="21.06g"
                                 android:fontFamily="@font/latoreguler"
                                 android:textSize="13sp"
                                 android:textColor="@android:color/black"/>
@@ -130,11 +131,11 @@
                                 />
 
                             <TextView
+                                android:id="@+id/total_protein"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:gravity="center"
-                                android:text="21.06g"
                                 android:fontFamily="@font/latoreguler"
                                 android:layout_marginBottom="6dp"
                                 android:textSize="13sp"
@@ -191,11 +192,11 @@
                                 />
 
                             <TextView
+                                android:id="@+id/nilai_kalori"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:gravity="center"
-                                android:text="21.06g"
                                 android:fontFamily="@font/latoreguler"
                                 android:textSize="13sp"
                                 android:layout_marginBottom="6dp"
@@ -252,6 +253,7 @@
                                 />
 
                             <TextView
+                                android:id="@+id/total_lemak"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
@@ -259,7 +261,6 @@
                                 android:fontFamily="@font/latoreguler"
                                 android:textSize="13sp"
                                 android:layout_marginBottom="6dp"
-                                android:text="21.06g"
                                 android:textColor="@android:color/black"/>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -280,7 +281,8 @@
         android:id="@+id/title_hasilriwayat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hasil Riwayat"
+        android:text="@string/hasil_riwayat"
+        android:fontFamily="@font/latoreguler"
         android:layout_below="@id/relativegrid"
         android:textSize="30sp"
         />
@@ -294,14 +296,37 @@
             android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
             android:focusable="false"
-            android:hint="Select Date" />
+            android:hint="@string/pilih_tanggal"
+            tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_riwayat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/title_hasilriwayat"
         />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/emptyDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_gravity="center"
+            android:text="@string/data_belum_tersedia"
+            android:fontFamily="@font/latoreguler"
+            android:visibility="gone"
+           /> <!-- Ini akan disembunyikan secara default -->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </RelativeLayout>

@@ -12,6 +12,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.rohman.nutriscanapp.data.api.ApiConfig
 import com.rohman.nutriscanapp.data.api.ApiResponse
 import com.rohman.nutriscanapp.data.api.PredictionData
@@ -49,15 +50,20 @@ class ResultCameraActivity : AppCompatActivity() {
             Glide.with(this).load(uri).into(binding.resultImage)
         }
 
-        val predictResult = intent.getStringExtra(EXTRA_PREDUCT_RESULT)
+        val predictResult = intent.getStringExtra(EXTRA_PREDICT_RESULT)
         if (predictResult != null) {
-            binding.resultTextView.text = predictResult
+            val listType = object : TypeToken<List<PredictionData>>() {}.type
+            val predictionList: List<PredictionData> = Gson().fromJson(predictResult, listType)
+
+            val names = predictionList.joinToString(separator = "\n") { it.name }
+            binding.resultTextView.text = names
         }
 
         binding.btnBack.setOnClickListener { onBackPressed() }
         binding.btnDetail.setOnClickListener {
             val intent = Intent(this, DetailResultCameraActivity::class.java)
             intent.putExtra(DetailResultCameraActivity.EXTRA_IMAGE_URI, imageUri)
+            intent.putExtra(EXTRA_PREDICT_RESULT, predictResult)
             startActivity(intent)
         }
     }
@@ -73,6 +79,6 @@ class ResultCameraActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_IMAGE_URI = "extra_image_uri"
-        const val EXTRA_PREDUCT_RESULT = "extra_predict_result"
+        const val EXTRA_PREDICT_RESULT = "extra_predict_result"
     }
 }

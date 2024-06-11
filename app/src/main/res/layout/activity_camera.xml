@@ -24,7 +24,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="173dp"
+        android:layout_height="140dp"
         tools:ignore="MissingConstraints"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,10 +33,11 @@
         android:background="@color/grey"
         >
 
+
         <ImageView
             android:id="@+id/captureImage"
-            android:layout_width="93dp"
-            android:layout_height="97dp"
+            android:layout_width="83dp"
+            android:layout_height="80dp"
             android:layout_marginBottom="16dp"
             android:clickable="true"
             android:focusable="true"
@@ -46,14 +47,14 @@
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.681"
             app:srcCompat="@drawable/capture" />
-
 
         <ImageView
             android:id="@+id/insertImage"
-            android:layout_width="50dp"
-            android:layout_height="53dp"
-            android:layout_marginStart="40dp"
+            android:layout_width="40dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="84dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"

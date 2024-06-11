@@ -117,7 +117,8 @@ class CameraActivity : AppCompatActivity() {
         if (data.isNotEmpty()) {
             val prediction = data[0]
             val intent = Intent(this, ResultCameraActivity::class.java)
-            intent.putExtra(ResultCameraActivity.EXTRA_PREDUCT_RESULT, prediction.name)
+            val jsonData = Gson().toJson(data)
+            intent.putExtra(ResultCameraActivity.EXTRA_PREDICT_RESULT, jsonData)
             intent.putExtra(EXTRA_CAMERAX_IMAGE, imageUri.toString())
             startActivity(intent)
         }

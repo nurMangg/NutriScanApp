@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/food_dashboard"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="400dp"
         android:src="@drawable/fooddashboard"
         android:layout_alignParentTop="true"
         android:adjustViewBounds="true"

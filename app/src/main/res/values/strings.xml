@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NutriScanApp</string>
+    <string name="app_name">NutriScan</string>
     <string name="title_app">NutriScan</string>
     <string name="mulai">Mulai</string>
     <string name="headline_firstpage">Foto Makanan Anda,\nKetahui Nutrisi Seketika</string>
@@ -20,4 +20,11 @@
 
     <string name="feedback">Feedback</string>
     <string name="about_nutriscan">About NutriScan</string>
+    <string name="tanggal">Tanggal</string>
+    <string name="name">Name</string>
+    <string name="desc">Desc</string>
+    <string name="hasil_riwayat">Hasil Riwayat</string>
+    <string name="riwayat">Riwayat</string>
+    <string name="pilih_tanggal">Pilih Tanggal</string>
+    <string name="data_belum_tersedia">Data belum tersedia</string>
 </resources>
