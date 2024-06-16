@@ -15,9 +15,12 @@
         android:layout_alignParentTop="true"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        />
+        android:alpha="0"
+        tools:alpha="100" />
+
 
     <RelativeLayout
+        android:id="@+id/rl_weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
@@ -30,7 +33,9 @@
             android:layout_height="30dp"
             android:src="@drawable/baseline_wb_sunny_24"
             android:layout_alignParentStart="true"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:alpha="0"
+            tools:alpha="100" />
 
         <TextView
             android:id="@+id/greetingTextView"
@@ -42,7 +47,9 @@
             android:layout_marginStart="8dp"
             android:text="Good Morning"
             android:textSize="18sp"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:alpha="0"
+            tools:alpha="100" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -52,7 +59,9 @@
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:background="@color/black"
-        android:layout_below="@+id/food_dashboard">
+        android:layout_below="@+id/food_dashboard"
+        android:alpha="0"
+        tools:alpha="100">
 
         <TextView
             android:id="@+id/myTextView"
@@ -73,11 +82,14 @@
             android:layout_marginRight="20dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/iconlayout" />
+            android:src="@drawable/iconlayout"
+            android:alpha="0"
+            tools:alpha="100" />
 
     </RelativeLayout>
 
     <GridLayout
+        android:id="@+id/grid_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/title_head"
@@ -87,7 +99,9 @@
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:alpha="0"
+        tools:alpha="100">
 
         <FrameLayout
             android:layout_width="13dp"
@@ -95,6 +109,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="5dp">
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_scan"
                 android:clickable="true"
@@ -106,6 +121,7 @@
                 app:cardCornerRadius="10dp"
                 app:cardBackgroundColor="@color/orange"
                 android:layout_gravity="fill">
+
                 <ImageButton
                     android:layout_width="64dp"
                     android:layout_height="64dp"
@@ -114,8 +130,8 @@
                     android:layout_gravity="center|top"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="false"
-                    android:focusable="false"
-                    />
+                    android:focusable="false" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -133,6 +149,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="5dp">
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_riwayat"
                 android:clickable="true"
@@ -144,6 +161,7 @@
                 app:cardCornerRadius="10dp"
                 app:cardBackgroundColor="@color/orange"
                 android:layout_gravity="fill">
+
                 <ImageButton
                     android:layout_width="60dp"
                     android:layout_height="70dp"
@@ -152,8 +170,8 @@
                     android:layout_gravity="center|top"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="false"
-                    android:focusable="false"
-                    />
+                    android:focusable="false" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -170,6 +188,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="5dp">
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_daftarmakanan"
                 android:clickable="true"
@@ -181,6 +200,7 @@
                 app:cardCornerRadius="10dp"
                 app:cardBackgroundColor="@color/orange"
                 android:layout_gravity="fill">
+
                 <ImageButton
                     android:layout_width="64dp"
                     android:layout_height="64dp"
@@ -189,8 +209,8 @@
                     android:layout_gravity="center|top"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="false"
-                    android:focusable="false"
-                    />
+                    android:focusable="false" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -208,6 +228,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="5dp">
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_setting"
                 android:clickable="true"
@@ -219,6 +240,7 @@
                 app:cardCornerRadius="10dp"
                 app:cardBackgroundColor="@color/orange"
                 android:layout_gravity="fill">
+
                 <ImageButton
                     android:layout_width="64dp"
                     android:layout_height="64dp"
@@ -227,8 +249,8 @@
                     android:layout_gravity="center|top"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="false"
-                    android:focusable="false"
-                    />
+                    android:focusable="false" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

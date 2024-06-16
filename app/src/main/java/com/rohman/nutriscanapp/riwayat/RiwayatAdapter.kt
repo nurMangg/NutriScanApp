@@ -3,14 +3,17 @@ package com.rohman.nutriscanapp.riwayat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.rohman.nutriscanapp.R
 import com.rohman.nutriscanapp.data.database.ResultDeteksi
 
-class RiwayatAdapter : ListAdapter<ResultDeteksi, RiwayatAdapter.RiwayatViewHolder>(RiwayatDiffCallback()) {
+class RiwayatAdapter :
+    ListAdapter<ResultDeteksi, RiwayatAdapter.RiwayatViewHolder>(RiwayatDiffCallback()) {
 
     private var nutrientData: List<ResultDeteksi> = listOf()
 
@@ -28,11 +31,20 @@ class RiwayatAdapter : ListAdapter<ResultDeteksi, RiwayatAdapter.RiwayatViewHold
         private val tvNama: TextView = itemView.findViewById(R.id.nameTextView)
         private val tvDesc: TextView = itemView.findViewById(R.id.descTextView)
         private val tvDate: TextView = itemView.findViewById(R.id.dateTextView)
+        private val ivImage: ImageView = itemView.findViewById(R.id.image_result)
 
         fun bind(resultDeteksi: ResultDeteksi) {
             tvNama.text = resultDeteksi.name
             tvDesc.text = resultDeteksi.desc
             tvDate.text = resultDeteksi.tanggal
+
+            resultDeteksi.image?.let {
+                Glide.with(itemView.context)
+                    .load(it)
+                    .placeholder(R.drawable.image_gallery)
+                    .error(R.drawable.baseline_image_not_supported_24)
+                    .into(ivImage)
+            }
         }
     }
 

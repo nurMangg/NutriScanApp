@@ -6,19 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".daftarmakanan.DaftarMakananActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp">
+
         <TextView
             android:id="@+id/title_daftaramakanan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Daftar Makanan"
+            android:text="@string/galeri_makanan"
             android:textSize="30sp"
             android:gravity="center"
-            android:layout_marginBottom="10dp"
-            />
+            android:fontFamily="@font/latebold"
+            android:layout_marginBottom="10dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/makanan"
@@ -26,7 +28,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:layout_below="@id/title_daftaramakanan"/>
+            android:layout_below="@id/title_daftaramakanan" />
 
 
     </RelativeLayout>

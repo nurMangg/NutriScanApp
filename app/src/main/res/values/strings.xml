@@ -18,8 +18,8 @@
 
     <string name="title_activity_maps">MapsActivity</string>
 
-    <string name="feedback">Feedback</string>
-    <string name="about_nutriscan">About NutriScan</string>
+    <string name="feedback">Beri Masukan</string>
+    <string name="about_nutriscan">Tentang NutriScan</string>
     <string name="tanggal">Tanggal</string>
     <string name="name">Name</string>
     <string name="desc">Desc</string>
@@ -27,4 +27,10 @@
     <string name="riwayat">Riwayat</string>
     <string name="pilih_tanggal">Pilih Tanggal</string>
     <string name="data_belum_tersedia">Data belum tersedia</string>
+    <string name="info_nutriscan">NutriScan membantu Anda menganalisis dan memahami kandungan nutrisi dari berbagai makanan berdasarkan prediksi machine learning yang canggih.</string>
+    <string name="tutup">Tutup</string>
+    <string name="team">C241-PS121</string>
+    <string name="abstrak">Abstrak</string>
+    <string name="deskripsi_abstrak">Dalam proyek aplikasi ini, kami sedang mengembangkan aplikasi untuk mendeteksi nutrisi dalam makanan. Dengan aplikasi tersebut, pengguna akan mengetahui nutrisi apa saja yang didapat saat mengonsumsi makanannya. Aplikasi yang kami kembangkan menggunakan deteksi pada kamera yang berfungsi untuk mengenali makanan dan menganalisa nutrisi apa saja yang ada pada makanan tersebut. Setelah pengguna mengambil gambar menggunakan kamera, maka akan diberikan detail mengenai nutrisi pada makanan tersebut. Untuk merumuskan masalah, masih sedikit alat yang tersedia untuk mengidentifikasi zat gizi dalam makanan yang mudah digunakan atau dibawa-bawa. Dan untuk pertanyaan penelitian kami berfokus pada deteksi nutrisi untuk menghasilkan algoritma yang akurat dan menyajikan informasi nutrisi apa saja yang diperoleh. Dengan adanya aplikasi ini diharapkan dapat memudahkan pengguna dalam memenuhi kebutuhan nutrisinya dan juga memudahkan pengguna dalam memilih makanan yang sehat dan tidak sehat. Informasi latar belakang ini berisi tentang pentingnya memiliki tubuh yang sehat yang bersumber dari komposisi makanan yang sehat dan banyak nutrisi untuk mencapai kesejahteraan secara keseluruhan. Tim kami memilih tema ini karena masih banyak masyarakat yang belum mengetahui tentang kesehatan fisiknya dan untuk mengatasi meningkatnya kekhawatiran terhadap penyakit gizi.</string>
+    <string name="confidence_kurang">Bukan Makanan / Data di luar dataset</string>
 </resources>

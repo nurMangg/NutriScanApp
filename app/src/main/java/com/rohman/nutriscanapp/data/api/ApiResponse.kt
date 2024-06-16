@@ -13,5 +13,6 @@ data class PredictionData(
     val desc: String,
     val lemak: String,
     val name: String,
-    val protein: String
+    val protein: String,
+    val confidence: String
 )

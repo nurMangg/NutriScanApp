@@ -1,21 +1,17 @@
 package com.rohman.nutriscanapp.daftarmakanan
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rohman.nutriscanapp.R
-import com.rohman.nutriscanapp.R.layout.activity_daftar_makanan
 import com.rohman.nutriscanapp.daftarmakanan.data.MakananAdapter
+import com.rohman.nutriscanapp.daftarmakanan.data.MakananResponse
 import com.rohman.nutriscanapp.daftarmakanan.data.MakananResponseItem
-import com.rohman.nutriscanapp.daftarmakanan.data.retrofit.ApiConfig
+import com.rohman.nutriscanapp.data.api.ApiConfig
 import com.rohman.nutriscanapp.databinding.ActivityDaftarMakananBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,6 +19,7 @@ import retrofit2.Response
 
 class DaftarMakananActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDaftarMakananBinding
+
     companion object {
         private const val TAG = "DaftarMainActivity"
     }
@@ -37,29 +34,29 @@ class DaftarMakananActivity : AppCompatActivity() {
         binding.makanan.layoutManager = layoutManager
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         binding.makanan.addItemDecoration(itemDecoration)
-        findRestaurant()
+        getListMakanan()
     }
 
-    private fun findRestaurant() {
+    private fun getListMakanan() {
         showLoad(true)
         val client = ApiConfig.getApiService().getMakanan()
-        client.enqueue(object : Callback<List<MakananResponseItem>> {
+        client.enqueue(object : Callback<MakananResponse> {
             override fun onResponse(
-                call: Call<List<MakananResponseItem>>,
-                response: Response<List<MakananResponseItem>>
+                call: Call<MakananResponse>,
+                response: Response<MakananResponse>
             ) {
                 showLoad(false)
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-                        setReviewData(responseBody)
+                        setReviewData(responseBody.data)
                     }
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
 
-            override fun onFailure(call: Call<List<MakananResponseItem>>, t: Throwable) {
+            override fun onFailure(call: Call<MakananResponse>, t: Throwable) {
                 showLoad(false)
                 Log.e(TAG, "onFailure: ${t.message}")
             }
@@ -77,4 +74,5 @@ class DaftarMakananActivity : AppCompatActivity() {
     private fun showLoad(isLoad: Boolean) {
         binding.progressBar.visibility = if (isLoad) View.VISIBLE else View.GONE
     }
+
 }

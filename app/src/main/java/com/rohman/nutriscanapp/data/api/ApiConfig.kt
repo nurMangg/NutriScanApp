@@ -14,7 +14,7 @@ object ApiConfig {
             .addInterceptor(loggingInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://34.128.121.202:8000/predict/")
+            .baseUrl("https://food-predict-tl2btfrc7a-uc.a.run.app/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

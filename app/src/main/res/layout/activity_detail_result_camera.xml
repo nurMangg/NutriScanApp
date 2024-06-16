@@ -17,50 +17,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="60dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btn_back"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground">
-
-                <ImageView
-                    android:id="@+id/closeImage"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:src="@drawable/baseline_close_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <RelativeLayout
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -87,13 +43,14 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="1dp"
-                android:backgroundTint="@color/grey100"/>
+                android:backgroundTint="@color/grey100" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/title_head"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/btn_show">
+
                 <TextView
                     android:id="@+id/content_title"
                     android:layout_width="match_parent"
@@ -103,7 +60,9 @@
                     android:text="@string/content_title"
                     android:textSize="24sp"
                     android:textColor="@color/black"
-                    tools:ignore="MissingConstraints">
+                    tools:ignore="MissingConstraints"
+                    android:alpha="0"
+                    tools:alpha="100">
 
                 </TextView>
 
@@ -115,7 +74,9 @@
                     app:layout_constraintEnd_toEndOf="@+id/content_title"
                     app:layout_constraintTop_toTopOf="parent"
                     android:src="@drawable/baseline_bookmark_add_before_24"
-                    android:backgroundTint="@android:color/transparent"/>
+                    android:backgroundTint="@android:color/transparent"
+                    android:alpha="0"
+                    tools:alpha="100" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -127,7 +88,7 @@
                 android:text="@string/content_desc"
                 android:fontFamily="@font/latolight"
                 android:textSize="13sp"
-                android:textColor="@color/quantum_greyblack1000"/>
+                android:textColor="@color/quantum_greyblack1000" />
 
             <GridLayout
                 android:id="@+id/grid_nutrisi"
@@ -137,7 +98,8 @@
                 android:layout_marginTop="16dp"
                 android:columnCount="4"
                 android:alignmentMode="alignMargins"
-
+                android:alpha="0"
+                tools:alpha="100"
                 android:useDefaultMargins="true">
 
                 <LinearLayout
@@ -160,8 +122,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?attr/selectableItemBackground"
-                        app:contentPadding="2dp"
-                        >
+                        app:contentPadding="2dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -175,8 +136,7 @@
                                 android:layout_weight="1"
                                 android:layout_marginTop="7dp"
                                 android:layout_marginBottom="7dp"
-                                android:src="@drawable/wheat"
-                                />
+                                android:src="@drawable/wheat" />
 
                             <TextView
                                 android:id="@+id/nilai_karbo"
@@ -188,7 +148,7 @@
                                 android:text="21.06g"
                                 android:fontFamily="@font/latoreguler"
                                 android:textSize="13sp"
-                                android:textColor="@android:color/black"/>
+                                android:textColor="@android:color/black" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -200,7 +160,7 @@
                         android:fontFamily="@font/latolight"
                         android:textSize="12sp"
                         android:textColor="@android:color/black"
-                        android:layout_marginTop="8dp"/>
+                        android:layout_marginTop="8dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -237,8 +197,7 @@
                                 android:layout_weight="1"
                                 android:layout_marginTop="7dp"
                                 android:layout_marginBottom="7dp"
-                                android:src="@drawable/protein"
-                                />
+                                android:src="@drawable/protein" />
 
                             <TextView
                                 android:id="@+id/nilai_protein"
@@ -250,7 +209,7 @@
                                 android:fontFamily="@font/latoreguler"
                                 android:layout_marginBottom="6dp"
                                 android:textSize="13sp"
-                                android:textColor="@android:color/black"/>
+                                android:textColor="@android:color/black" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -262,7 +221,7 @@
                         android:fontFamily="@font/latolight"
                         android:textSize="12sp"
                         android:textColor="@android:color/black"
-                        android:layout_marginTop="8dp"/>
+                        android:layout_marginTop="8dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -299,8 +258,7 @@
                                 android:layout_weight="1"
                                 android:layout_marginTop="7dp"
                                 android:layout_marginBottom="7dp"
-                                android:src="@drawable/kalori"
-                                />
+                                android:src="@drawable/kalori" />
 
                             <TextView
                                 android:id="@+id/nilai_kalori"
@@ -312,7 +270,7 @@
                                 android:fontFamily="@font/latoreguler"
                                 android:textSize="13sp"
                                 android:layout_marginBottom="6dp"
-                                android:textColor="@android:color/black"/>
+                                android:textColor="@android:color/black" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -324,7 +282,7 @@
                         android:fontFamily="@font/latolight"
                         android:textSize="12sp"
                         android:textColor="@android:color/black"
-                        android:layout_marginTop="8dp"/>
+                        android:layout_marginTop="8dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -361,8 +319,7 @@
                                 android:layout_weight="1"
                                 android:layout_marginTop="7dp"
                                 android:layout_marginBottom="7dp"
-                                android:src="@drawable/lemak"
-                                />
+                                android:src="@drawable/lemak" />
 
                             <TextView
                                 android:id="@+id/nilai_lemak"
@@ -374,7 +331,7 @@
                                 android:textSize="13sp"
                                 android:layout_marginBottom="6dp"
                                 android:text="21.06g"
-                                android:textColor="@android:color/black"/>
+                                android:textColor="@android:color/black" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -386,7 +343,7 @@
                         android:fontFamily="@font/latolight"
                         android:textSize="12sp"
                         android:textColor="@android:color/black"
-                        android:layout_marginTop="8dp"/>
+                        android:layout_marginTop="8dp" />
                 </LinearLayout>
             </GridLayout>
 
@@ -399,14 +356,18 @@
                 android:fontFamily="@font/latosemibold"
                 android:text="@string/bahan_bahan"
                 android:textSize="24sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:alpha="0"
+                tools:alpha="100" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycle_bahan"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/bahan"
-                android:paddingLeft="30dp"/>
+                android:paddingLeft="30dp"
+                android:alpha="0"
+                tools:alpha="100" />
 
         </RelativeLayout>
     </RelativeLayout>

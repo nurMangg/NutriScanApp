@@ -2,26 +2,36 @@ package com.rohman.nutriscanapp.daftarmakanan.data
 
 import com.google.gson.annotations.SerializedName
 
+data class MakananResponse(
+    @field:SerializedName("data")
+    val data: List<MakananResponseItem>,
+
+    @field:SerializedName("message")
+    val message: String,
+
+    @field:SerializedName("status")
+    val status: Int
+)
+
 data class MakananResponseItem(
+    @field:SerializedName("carbo")
+    val carbohydrates: Int,
 
-	@field:SerializedName("carbohydrates")
-	val carbohydrates: Int,
+    @field:SerializedName("protein")
+    val protein: Int,
 
-	@field:SerializedName("protein")
-	val protein: Int,
+    @field:SerializedName("lemak")
+    val fat: Int,
 
-	@field:SerializedName("fat")
-	val fat: Int,
+    @field:SerializedName("name")
+    val name: String,
 
-	@field:SerializedName("name")
-	val name: String,
+    @field:SerializedName("desc")
+    val description: String,
 
-	@field:SerializedName("description")
-	val description: String,
+    @field:SerializedName("bahan")
+    val ingredients: List<String>,
 
-	@field:SerializedName("ingredients")
-	val ingredients: List<String>,
-
-	@field:SerializedName("calories")
-	val calories: Int
+    @field:SerializedName("calory")
+    val calories: Int
 )

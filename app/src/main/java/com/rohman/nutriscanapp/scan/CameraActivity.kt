@@ -1,8 +1,9 @@
 package com.rohman.nutriscanapp.scan
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -21,27 +22,21 @@ import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
 import com.google.gson.Gson
 import com.rohman.nutriscanapp.createCustomTempFile
 import com.rohman.nutriscanapp.data.api.ApiConfig
 import com.rohman.nutriscanapp.data.api.ApiResponse
 import com.rohman.nutriscanapp.data.api.PredictionData
 import com.rohman.nutriscanapp.databinding.ActivityCameraBinding
-import com.rohman.nutriscanapp.uriToJson
-import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
-import java.io.File
 import java.io.InputStream
 
 class CameraActivity : AppCompatActivity() {
@@ -56,6 +51,40 @@ class CameraActivity : AppCompatActivity() {
 
         binding.captureImage.setOnClickListener { takePhoto() }
         binding.insertImage.setOnClickListener { startGallery() }
+
+        if (!isCameraPermissionGranted()) {
+            requestCameraPermission()
+        }
+    }
+
+    private fun isCameraPermissionGranted(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestCameraPermission() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.CAMERA),
+            REQUEST_CAMERA_PERMISSION
+        )
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CAMERA_PERMISSION) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                showToast("Izin kamera diberikan. Anda sekarang dapat menggunakan kamera.")
+            } else {
+                showToast("Izin kamera ditolak. Aplikasi mungkin tidak berfungsi dengan baik.")
+            }
+        }
     }
 
     private fun showToast(message: String) {
@@ -148,7 +177,8 @@ class CameraActivity : AppCompatActivity() {
                     imageCapture
                 )
             } catch (exc: Exception) {
-                Toast.makeText(this@CameraActivity, "Failed to open camera.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CameraActivity, "Failed to open camera.", Toast.LENGTH_SHORT)
+                    .show()
                 Log.e(TAG, "startCamera: ${exc.message}", exc)
             }
         }, ContextCompat.getMainExecutor(this))
@@ -171,7 +201,11 @@ class CameraActivity : AppCompatActivity() {
 
                 override fun onError(exc: ImageCaptureException) {
                     showLoad(false)
-                    Toast.makeText(this@CameraActivity, "Failed to capture image.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@CameraActivity,
+                        "Failed to capture image.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     Log.e(TAG, "onError: ${exc.message}", exc)
                 }
             }
@@ -241,5 +275,6 @@ class CameraActivity : AppCompatActivity() {
         private const val TAG = "CameraActivity"
         const val EXTRA_CAMERAX_IMAGE = "CameraX Image"
         const val EXTRA_PREDICT_RESULT = "predict_result"
+        private const val REQUEST_CAMERA_PERMISSION = 100
     }
 }

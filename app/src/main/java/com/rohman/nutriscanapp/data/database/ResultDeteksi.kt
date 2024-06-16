@@ -28,12 +28,15 @@ data class ResultDeteksi(
     @ColumnInfo(name = "calory")
     var calory: String? = null,
 
-    @ColumnInfo(name  = "lemak")
+    @ColumnInfo(name = "lemak")
     var lemak: String? = null,
 
     @ColumnInfo(name = "bahan")
     var bahan: List<String>? = null,
 
     @ColumnInfo(name = "date")
-    var tanggal: String? = null
+    var tanggal: String? = null,
+
+    @ColumnInfo(name = "image")
+    val image: ByteArray?
 ) : Parcelable

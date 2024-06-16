@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:padding="20dp"
     tools:context=".riwayat.RiwayatActivity">
+
     <TextView
         android:id="@+id/title_riwayat"
         android:layout_width="match_parent"
@@ -14,269 +15,268 @@
         android:text="@string/riwayat"
         android:textSize="30sp"
         android:fontFamily="@font/latosemibold"
-        />
+        android:alpha="0"
+        tools:alpha="100" />
 
     <RelativeLayout
         android:id="@+id/relativegrid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title_riwayat">
-            <GridLayout
-                android:id="@+id/grid_nutrisi"
-                android:layout_width="match_parent"
+
+        <GridLayout
+            android:id="@+id/grid_nutrisi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:columnCount="4"
+            android:alignmentMode="alignMargins"
+            android:alpha="0"
+            tools:alpha="100"
+            android:useDefaultMargins="true">
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:columnCount="4"
-                android:alignmentMode="alignMargins"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:gravity="center">
 
-                android:useDefaultMargins="true">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/karbohidrat"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="10dp"
+                    android:background="@drawable/stroke_detairesult"
+                    app:cardBackgroundColor="@color/white"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:contentPadding="2dp">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:orientation="vertical"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:gravity="center">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/karbohidrat"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="10dp"
-                        android:background="@drawable/stroke_detairesult"
-                        app:cardBackgroundColor="@color/white"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        app:contentPadding="2dp"
-                        >
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
 
-                        <LinearLayout
+                        <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginBottom="7dp"
+                            android:src="@drawable/wheat" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
-                                android:layout_marginTop="7dp"
-                                android:layout_marginBottom="7dp"
-                                android:src="@drawable/wheat"
-                                />
-
-                            <TextView
-                                android:id="@+id/total_karbo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginBottom="6dp"
-                                android:gravity="center"
-                                android:fontFamily="@font/latoreguler"
-                                android:textSize="13sp"
-                                android:textColor="@android:color/black"/>
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/karbo"
-                        android:fontFamily="@font/latolight"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/black"
-                        android:layout_marginTop="8dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:orientation="vertical"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:gravity="center">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/protein"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="10dp"
-                        android:background="@drawable/stroke_detairesult"
-                        app:cardBackgroundColor="@color/white"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        app:contentPadding="2dp">
-
-                        <LinearLayout
+                        <TextView
+                            android:id="@+id/total_karbo"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="6dp"
+                            android:gravity="center"
+                            android:fontFamily="@font/latoreguler"
+                            android:textSize="13sp"
+                            android:textColor="@android:color/black" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
-                                android:layout_marginTop="7dp"
-                                android:layout_marginBottom="7dp"
-                                android:src="@drawable/protein"
-                                />
-
-                            <TextView
-                                android:id="@+id/total_protein"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:gravity="center"
-                                android:fontFamily="@font/latoreguler"
-                                android:layout_marginBottom="6dp"
-                                android:textSize="13sp"
-                                android:textColor="@android:color/black"/>
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/protein"
-                        android:fontFamily="@font/latolight"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/black"
-                        android:layout_marginTop="8dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:orientation="vertical"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:text="@string/karbo"
+                    android:fontFamily="@font/latolight"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kalori"
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:gravity="center">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/protein"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="10dp"
+                    android:background="@drawable/stroke_detairesult"
+                    app:cardBackgroundColor="@color/white"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:contentPadding="2dp">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="10dp"
-                        android:background="@drawable/stroke_detairesult"
-                        app:cardBackgroundColor="@color/white"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        app:contentPadding="2dp">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
 
-                        <LinearLayout
+                        <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginBottom="7dp"
+                            android:src="@drawable/protein" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
-                                android:layout_marginTop="7dp"
-                                android:layout_marginBottom="7dp"
-                                android:src="@drawable/kalori"
-                                />
+                        <TextView
+                            android:id="@+id/total_protein"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center"
+                            android:fontFamily="@font/latoreguler"
+                            android:layout_marginBottom="6dp"
+                            android:textSize="13sp"
+                            android:textColor="@android:color/black" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-                            <TextView
-                                android:id="@+id/nilai_kalori"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:gravity="center"
-                                android:fontFamily="@font/latoreguler"
-                                android:textSize="13sp"
-                                android:layout_marginBottom="6dp"
-                                android:textColor="@android:color/black"/>
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/kalori"
-                        android:fontFamily="@font/latolight"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/black"
-                        android:layout_marginTop="8dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:orientation="vertical"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:text="@string/protein"
+                    android:fontFamily="@font/latolight"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/lemak"
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:gravity="center">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/kalori"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="10dp"
+                    android:background="@drawable/stroke_detairesult"
+                    app:cardBackgroundColor="@color/white"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:contentPadding="2dp">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="10dp"
-                        android:background="@drawable/stroke_detairesult"
-                        app:cardBackgroundColor="@color/white"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        app:contentPadding="2dp">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
 
-                        <LinearLayout
+                        <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginBottom="7dp"
+                            android:src="@drawable/kalori" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
-                                android:layout_marginTop="7dp"
-                                android:layout_marginBottom="7dp"
-                                android:src="@drawable/lemak"
-                                />
+                        <TextView
+                            android:id="@+id/nilai_kalori"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center"
+                            android:fontFamily="@font/latoreguler"
+                            android:textSize="13sp"
+                            android:layout_marginBottom="6dp"
+                            android:textColor="@android:color/black" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-                            <TextView
-                                android:id="@+id/total_lemak"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:gravity="center"
-                                android:fontFamily="@font/latoreguler"
-                                android:textSize="13sp"
-                                android:layout_marginBottom="6dp"
-                                android:textColor="@android:color/black"/>
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/kalori"
+                    android:fontFamily="@font/latolight"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
 
-                    <TextView
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:gravity="center">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/lemak"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="10dp"
+                    android:background="@drawable/stroke_detairesult"
+                    app:cardBackgroundColor="@color/white"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:contentPadding="2dp">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/lemak"
-                        android:fontFamily="@font/latolight"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/black"
-                        android:layout_marginTop="8dp"/>
-                </LinearLayout>
-            </GridLayout>
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginBottom="7dp"
+                            android:src="@drawable/lemak" />
+
+                        <TextView
+                            android:id="@+id/total_lemak"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center"
+                            android:fontFamily="@font/latoreguler"
+                            android:textSize="13sp"
+                            android:layout_marginBottom="6dp"
+                            android:textColor="@android:color/black" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/lemak"
+                    android:fontFamily="@font/latolight"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+        </GridLayout>
     </RelativeLayout>
+
     <TextView
         android:id="@+id/title_hasilriwayat"
         android:layout_width="match_parent"
@@ -285,10 +285,13 @@
         android:fontFamily="@font/latoreguler"
         android:layout_below="@id/relativegrid"
         android:textSize="30sp"
-        />
+        android:alpha="0"
+        tools:alpha="100" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">
+
         <EditText
             android:id="@+id/editTextDate"
             android:layout_width="wrap_content"
@@ -297,7 +300,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:focusable="false"
             android:hint="@string/pilih_tanggal"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:alpha="0"
+            tools:alpha="100" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -306,11 +311,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/title_hasilriwayat"
-        />
+        android:alpha="0"
+        tools:alpha="100" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/emptyDataTextView"
             android:layout_width="wrap_content"
@@ -322,8 +329,7 @@
             android:layout_gravity="center"
             android:text="@string/data_belum_tersedia"
             android:fontFamily="@font/latoreguler"
-            android:visibility="gone"
-           /> <!-- Ini akan disembunyikan secara default -->
+            android:visibility="gone" /> <!-- Ini akan disembunyikan secara default -->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

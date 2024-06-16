@@ -12,10 +12,13 @@ import androidx.room.Update
 interface ResultDeteksiDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(resultDeteksi: ResultDeteksi)
+
     @Update
     fun update(resultDeteksi: ResultDeteksi)
+
     @Delete
     fun delete(resultDeteksi: ResultDeteksi)
+
     @Query("SELECT * from result_deteksi ORDER BY id ASC")
     fun gettAllData(): LiveData<List<ResultDeteksi>>
 

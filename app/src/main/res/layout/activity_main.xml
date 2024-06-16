@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background">
@@ -23,7 +24,9 @@
         android:layout_marginBottom="8dp"
         android:text="@string/title_app"
         android:textColor="@color/orange"
-        android:textSize="40dp" />
+        android:textSize="40dp"
+        android:alpha="0"
+        tools:alpha="100" />
 
     <TextView
         android:id="@+id/app_desc"
@@ -39,7 +42,9 @@
         android:gravity="left"
         android:text="@string/headline_firstpage"
         android:textColor="@color/white"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:alpha="0"
+        tools:alpha="100" />
 
     <Button
         android:id="@+id/startButton"
@@ -60,7 +65,8 @@
         android:textAlignment="center"
         android:textSize="20sp"
         app:strokeColor="@color/orange"
-        app:strokeWidth="3sp" />
-
+        app:strokeWidth="3sp"
+        android:alpha="0"
+        tools:alpha="100" />
 
 </RelativeLayout>

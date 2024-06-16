@@ -1,11 +1,12 @@
 package com.rohman.nutriscanapp
 
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
-import android.view.WindowManager
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -31,22 +32,23 @@ class DashboardActivity : AppCompatActivity() {
         greetingTextView.text = greetingMessage
         weatherIcon.setImageResource(iconResId)
 
+        playAnimation()
         setViewContent()
-        main()
     }
+
 
     private fun getGreetingAndIcon(): Pair<String, Int> {
         val calendar = Calendar.getInstance()
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
         return when (hour) {
-            in 0..11 -> "Good Morning!" to R.drawable.baseline_wb_sunny_24
+            in 3..11 -> "Good Morning!" to R.drawable.baseline_wb_sunny_24
             in 12..17 -> "Good Afternoon!" to R.drawable.baseline_cloud_24
             else -> "Good Evening!" to R.drawable.baseline_mode_night_24
         }
     }
 
-    private fun setViewContent(){
-        binding.btnScan.setOnClickListener{
+    private fun setViewContent() {
+        binding.btnScan.setOnClickListener {
             startActivity(Intent(this, CameraActivity::class.java))
         }
         binding.btnRiwayat.setOnClickListener {
@@ -59,8 +61,36 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(Intent(this, PengaturanActivity::class.java))
         }
 
-        binding.iconView.setOnClickListener{ dialogPopUp() }
+        binding.iconView.setOnClickListener { dialogPopUp() }
     }
+
+
+    private fun playAnimation() {
+        val foodDashboard =
+            ObjectAnimator.ofFloat(binding.foodDashboard, View.ALPHA, 0f, 1f).setDuration(100)
+        val info = ObjectAnimator.ofFloat(binding.iconView, View.ALPHA, 0f, 1f).setDuration(300)
+        val weatherIcon =
+            ObjectAnimator.ofFloat(binding.weatherIcon, View.ALPHA, 0f, 1f).setDuration(200)
+        val greeting =
+            ObjectAnimator.ofFloat(binding.greetingTextView, View.ALPHA, 0f, 1f).setDuration(200)
+        val titleHead =
+            ObjectAnimator.ofFloat(binding.titleHead, View.ALPHA, 0f, 1f).setDuration(200)
+        val gridLayout =
+            ObjectAnimator.ofFloat(binding.gridLayout, View.ALPHA, 0f, 1f).setDuration(200)
+
+        AnimatorSet().apply {
+            playSequentially(
+                foodDashboard,
+                titleHead,
+                gridLayout,
+                weatherIcon,
+                greeting,
+                info
+            )
+            startDelay = 100
+        }.start()
+    }
+
 
     private fun dialogPopUp() {
         val dialog = Dialog(this)
@@ -72,7 +102,7 @@ class DashboardActivity : AppCompatActivity() {
 
         val closeButton: Button = dialog.findViewById(R.id.closeButton)
         val textView: TextView = dialog.findViewById(R.id.popupText)
-        textView.text = "Some text here"
+        textView.text = getString(R.string.info_nutriscan)
 
         closeButton.setOnClickListener {
             dialog.dismiss()
@@ -80,10 +110,4 @@ class DashboardActivity : AppCompatActivity() {
 
         dialog.show()
     }
-
-    fun main() {
-        println("No Idea, I Need Healing")
-    }
-
-
 }

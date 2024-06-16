@@ -15,6 +15,7 @@ class PengaturanActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pengaturan)
 
         val feedbackButton = findViewById<RelativeLayout>(R.id.feedback)
+        val about = findViewById<RelativeLayout>(R.id.about)
 
         feedbackButton.setOnClickListener {
             val emailIntent = Intent(Intent.ACTION_SEND).apply {
@@ -26,8 +27,13 @@ class PengaturanActivity : AppCompatActivity() {
             if (emailIntent.resolveActivity(packageManager) != null) {
                 startActivity(Intent.createChooser(emailIntent, "Kirim Email Menggunakan:"))
             } else {
-                Toast.makeText(this, "Tidak ada aplikasi email yang terinstal.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Tidak ada aplikasi email yang terinstal.", Toast.LENGTH_SHORT)
+                    .show()
             }
+        }
+
+        about.setOnClickListener {
+            startActivity(Intent(this, TentangNutriscanActivity::class.java))
         }
     }
 }

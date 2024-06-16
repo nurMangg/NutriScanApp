@@ -4,7 +4,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.rohman.nutriscanapp.R
-import com.rohman.nutriscanapp.data.api.PredictionData
 
 class BahanBahanAdapter(private val ingredients: List<String>) :
     RecyclerView.Adapter<BahanBahanAdapter.IngredientViewHolder>() {
